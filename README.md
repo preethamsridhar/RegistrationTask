@@ -40,3 +40,25 @@ When the user submits the data, display some kind of loading animation inside th
 “Submit” button. Delay the process for a few seconds to mimic as if the app is
 communicating with a real server. After a few seconds, simply display a nice modal that
 says “Your course has been successfully registered.”
+
+## Answer
+
+### Dependencies
+1. React
+2. Ant Design
+
+### Components of Ant we used
+1. Card
+2. Form
+3. Input
+4. Radio
+5. Date Picker
+6. Text Area
+7. Message
+
+### Difficulty faced
+1. Adding custom validation on the Date picker
+2. Retaining the previous course's subject choice.
+
+### How we developed
+We used ant design as the design framework. Form validation are done using both getFieldDecorator method and onChange functionality. On Pressing the submit, timeout is set for 2 seconds after which notification is shown with success message. Submit button is turned to loading for these 2 seconds. We have used hooks to maintain the state.
