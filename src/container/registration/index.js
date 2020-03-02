@@ -64,9 +64,11 @@ const Index = (props) => {
           message.success("Registration successful");
         }, 2000)
       }
-      console.log(values);
+      else {
+        setisValidDate(true);
+        setvalidDateMessage(<p style={{color: 'red'}}>Please select the date</p>);
+      }
     })
-    console.log("in handle");
   }
 
   const changeCourse = e => {
@@ -86,17 +88,22 @@ const Index = (props) => {
   const { getFieldDecorator } = props.form;
 
   const onDateChange = (e)=> {
-    console.log(e);
-    console.log(moment(e).format('L'));
-    if (validDates.includes(moment(e).format('L'))) {
-      console.log("in if");
-      setisValidDate(false);
-      setvalidDateMessage(null);
+    if (e) {
+      if (validDates.includes(moment(e).format('L'))) {
+        console.log("in if");
+        setisValidDate(false);
+        setvalidDateMessage(null);
+      }
+      else {
+        console.log("in else");
+        setisValidDate(true);
+        setvalidDateMessage(<p style={{color: 'red'}}>Your selected course and subject is not offered beginning from your selected date</p>);
+      
+      }
     }
     else {
-      console.log("in else");
       setisValidDate(true);
-      setvalidDateMessage(<p style={{color: 'red'}}>Your selected course and subject is not offered beginning from your selected date</p>);
+      setvalidDateMessage(<p style={{color: 'red'}}>Please select the date</p>);
     }
   }
 
@@ -148,10 +155,10 @@ const Index = (props) => {
               getFieldDecorator('startDate', {
                 validateFirst: true,
                 rules: [
-                  { required: true, message: "You have to pick the data" }
+                  { required: true, message: "Please select the date" }
                 ]
               })(
-                <DatePicker onChange={onDateChange} />
+                <DatePicker onChange={onDateChange} />     
               )
             }
           </Form.Item>
